@@ -1,9 +1,9 @@
 from __future__ import division
 import sys
-import argparse as ap
-parser = ap.ArgumentParser(description='HMM, input expected from STDIN')
+import argparse
+parser = argparse.ArgumentParser(description='HMM, input expected from STDIN')
 parser.add_argument('-n', action='store', dest='n_states', type=int, default=2, help='number of states')
-n_states = parser.parse_args().__dict__['n_states']
+n_states = parser.parse_args().n_states
 
 def memoize(f):
     cache = {}
@@ -14,7 +14,7 @@ def memoize(f):
     return mf
 
 def main():
-    data = [x.strip() for x in sys.stdin.read().split()]
+    data = ['#' + x.strip() + '#' for x in sys.stdin.read().split()]
     a = distribute_transitions(data) #transition matrix
     b = distribute_emissions(data)
     pi = distribute_initial_states(data)
@@ -36,7 +36,7 @@ class HMM():
         self.pi = pi #initial state matrix
 
     def soft_counts(self):
-        countdict = {x : [0 for i in xrange(n_states)] for x in set('#'.join(self.data))}
+        countdict = {x : [0 for i in xrange(n_states)] for x in set(''.join(self.data))}
         for string in self.data:
             for t in xrange(len(string)):
                 for i in xrange(n_states):
@@ -59,10 +59,7 @@ class HMM():
 
     @memoize
     def p(self, t, i, j, string):
-        return (self.alpha(i,t, string) * self.a[i][j] * self.b[i][j][string[t]] * self.beta(j,t+1, string)) \
-            / (sum( \
-                sum(self.alpha(m, t, string) * self.a[m][n] * self.b[m][n][string[t]] * self.beta(n, t+1, string) for n in xrange(n_states)) \
-                    for m in xrange(n_states)))
+        return (self.alpha(i,t, string) * self.a[i][j] * self.b[i][j][string[t]] * self.beta(j,t+1, string)) / (sum(sum(self.alpha(m, t, string) * self.a[m][n] * self.b[m][n][string[t]] * self.beta(n, t+1, string) for n in xrange(n_states)) for m in xrange(n_states)))
 
     def gamma(self, i, t):
         pass
