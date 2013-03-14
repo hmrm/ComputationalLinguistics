@@ -1,0 +1,14 @@
+Evaluation for Assignment 3-4 on HMM
+
+Comments;It seems you have kept the letters case sensitive. You interpretation of the results in not very clear and it does not seperate out vowels from consonents. You should have printed out the emmission and transition probabilities.
+
+Evaluation:
+1. Code Runs: 4/4
+2. Convergence of probabilities: 3/3
+3. Soft Counts: 3/3
+4. Parameter estimation: 4/4
+5. 3 State: 3/3
+6. Overall structure: 2/3
+7. Total: 19/20
+
+Grader: Nikita Mishra

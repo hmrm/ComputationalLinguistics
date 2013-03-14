@@ -1,0 +1,18 @@
+Evaluation for Assignment-5 on compound word detection.
+Comments:
+
+I could not get your code to run. Please contact me about how to run it. I should be available on March 11 afternoon.
+
+
+1. Precision Recall: /2
+
+Different Criterion
+2. Mutual Information: /2
+3. Constraint on length: /1
+4. Discovering nouns and verbs: /2
+
+5. Discussion: /2
+6. Overall: /1
+
+Total: /10
+Grader: Nikita Mishra
